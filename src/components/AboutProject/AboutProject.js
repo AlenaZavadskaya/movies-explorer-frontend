@@ -26,7 +26,7 @@ function AboutProject() {
         </div>
       </div>
       <ul className="about-scale">
-        <li className="about-scale__weeks about-scale_green">1 неделя</li>
+        <li className="about-scale__weeks about-scale__green">1 неделя</li>
         <li className="about-scale__weeks">4 недели</li>
         <li className="about-scale__dev">Back-end</li>
         <li className="about-scale__dev">Front-end</li>

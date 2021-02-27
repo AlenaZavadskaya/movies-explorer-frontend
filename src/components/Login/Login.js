@@ -38,12 +38,13 @@ function Login(props) {
         title="Рады видеть!"
         isLoading={props.isLoading ? "Вход..." : "Войти"}
         isOpen={props.isOpen}
-				onSubmit={handleSubmit}
-				Link={
-					<Link to="/sign-up" className="form__request-auth">
-						Ещё не зарегистрированы?<span className="form__request-span"> Регистрация</span> 
-					</Link>
-				}
+        onSubmit={handleSubmit}
+        Link={
+          <Link to="/sign-up" className="form__request-auth">
+            Ещё не зарегистрированы?
+            <span className="form__request-span"> Регистрация</span>
+          </Link>
+        }
       >
         <label className="form__field form__field-text">
           E-mail

@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./MoviesCard.css";
 import "../Header/Header.css";
 import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import More from "../More/More";
@@ -16,27 +16,10 @@ import card_6 from "../../images/card-6.png";
 import card_7 from "../../images/card-7.png";
 
 function MoviesCard(props) {
-
   return (
     <>
       <Header className="header header__white">
-        <nav className="header-nav">
-          <Link to="/">
-            <div className="header__logo" />
-          </Link>
-          <Link to="/movies" className="header-nav__movies">
-            Фильмы
-          </Link>
-          <Link path="/saved-movies" className="header-nav__saved-movies">
-            Сохраненные фильмы
-          </Link>
-        </nav>
-        <div className="header-auth">
-          <Link to="/profile">
-            <div className="header__profile" />
-					</Link>
-					<div className="header__menu" onClick={props.onMenu} />
-        </div>
+        <Navigation onClick={props.onMenu} />
       </Header>
       <SearchForm />
       <FilterCheckbox />

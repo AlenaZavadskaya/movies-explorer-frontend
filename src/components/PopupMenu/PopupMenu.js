@@ -20,11 +20,14 @@ function PopupMenu(props) {
             Фильмы
           </Link>
           <Link
-            path="/saved-movies"
+            to="/movies"
             className="header-nav__saved-movies popup__nav"
           >
-            Сохраненные фильмы
+						Сохраненные фильмы
           </Link>
+						{/* <Link to="/saved-movies" className="header-nav__saved-movies">
+          Сохраненные фильмы
+        </Link> */}
         </nav>
         <div className="header-auth">
           <Link to="/profile">

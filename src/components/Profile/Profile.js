@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Profile/Profile.css";
 import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 
 function Profile(props) {
   const [name, setName] = useState("");
@@ -23,23 +24,7 @@ function Profile(props) {
   return (
     <>
       <Header className="header header__white">
-        <nav className="header-nav">
-          <Link to="/">
-            <div className="header__logo" />
-          </Link>
-          <Link to="/movies" className="header-nav__movies">
-            Фильмы
-          </Link>
-          <Link path="/saved-movies" className="header-nav__saved-movies">
-            Сохраненные фильмы
-          </Link>
-        </nav>
-        <div className="header-auth">
-          <Link to="/profile">
-            <div className="header__profile" />
-					</Link>
-					<div className="header__menu" onClick={props.onMenu} />
-        </div>
+        <Navigation onClick={props.onMenu} />
       </Header>
       <section className="profile">
         <form
