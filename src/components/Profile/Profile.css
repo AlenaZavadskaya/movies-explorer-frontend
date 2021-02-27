@@ -1,0 +1,116 @@
+.form__profile {
+  max-width: 410px;
+  margin: 0 auto;
+}
+
+.submit__button-profile {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #000000;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  margin: 220px 0 16px;
+}
+
+.submit__button-profile:hover {
+	opacity: 0.8;
+  cursor: pointer;
+}
+
+.form__inputs {
+	max-width: 410px;
+  padding: 0;
+  margin: 0 auto;
+  border: 0;
+}
+
+.form__exit {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #ee3465;
+  text-decoration: none;
+  transition: 0.3s linear;
+}
+
+.form__exit:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.form__heading-profile {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+  margin: 74px auto 123px;
+	max-width: 204px;
+}
+
+.form__item-profile {
+  font-size: 11px;
+  line-height: 13px;
+  border-bottom: 0;
+  padding: 0;
+  text-align: end;
+}
+
+.form__field-profile {
+  display: flex;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #000000;
+  text-align: start;
+}
+
+.form__input-container-profile {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 17px;
+}
+
+.form__input-container-profile:nth-child(2) {
+  padding-bottom: 0;
+	border-bottom: none;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 450px) {
+	.form__profile {
+		max-width: 260px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.form__heading-profile {
+	margin: 70px auto 80px;
+	}
+
+	.submit__button-profile {
+		font-size: 12px;
+		line-height: 15px;
+		margin: 379px 0 16px;
+	}
+}
+
+::-webkit-input-placeholder {color:black;}
+::-moz-placeholder          {color:black;}/* Firefox 19+ */
+:-moz-placeholder           {color:black;}/* Firefox 18- */
+:-ms-input-placeholder      {color:black;}

@@ -1,0 +1,84 @@
+.portfolio {
+  background: #ffffff;
+  padding: 0 70px 125px;
+}
+
+.portfolio__section {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  color: #a0a0a0;
+  margin: 0 0 50px;
+}
+
+.portfolio__links {
+  height: 89px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.portfolio__links_border {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.portfolio__link {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  max-width: 880px;
+  text-decoration: none;
+}
+
+.portfolio__link-icon {
+  background: url(../../images/needle.svg) no-repeat center;
+  width: 29px;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+
+  .portfolio__links {
+    height: 69px;
+  }
+
+  .portfolio__link {
+    font-size: 28px;
+  }
+
+  .portfolio__link-icon {
+    width: 27px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .portfolio {
+    padding: 0 14px 70px;
+  }
+
+  .portfolio__section {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 40px;
+  }
+
+  .portfolio__links {
+    height: 47px;
+  }
+
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__link-icon {
+    width: 18px;
+  }
+}

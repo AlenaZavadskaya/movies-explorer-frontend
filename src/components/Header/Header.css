@@ -1,0 +1,167 @@
+.header {
+  height: 74px;
+  background-color: #5c5c5c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 70px;
+}
+
+.header__white {
+  background-color: #fff;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  background: url(../../images/logo.svg) center no-repeat;
+  width: 38px;
+  height: 38px;
+}
+
+.header-nav__movies {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+  text-decoration: none;
+  margin: 0 16px 0 44px;
+  transition: 0.1s linear 0.1s;
+  display: block;
+}
+
+.header-nav__movies:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.header-nav__saved-movies {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+  text-decoration: none;
+  transition: 0.1s linear 0.1s;
+  display: block;
+}
+
+.header-nav__saved-movies:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.header-auth {
+  display: flex;
+  align-items: center;
+}
+
+.header-auth__register {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 30px;
+  transition: 0.1s linear 0.1s;
+}
+
+.header-auth__register:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.header-auth__button {
+  width: 76px;
+  height: 32px;
+  padding: 0%;
+  background: #2be080;
+  border-radius: 3px;
+  border: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  transition: 0.1s linear 0.1s;
+}
+
+.header-auth__button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.header__profile {
+  background: url(../../images/profile.svg) center no-repeat;
+  background-size: cover;
+  width: 100px;
+  height: 32px;
+  display: block;
+}
+
+.header__menu {
+  background: url(../../images/menu.svg) center no-repeat;
+  background-size: cover;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  transition: 0.1s linear 0.1s;
+  display: none;
+}
+
+.header__menu:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 30px;
+  }
+
+  .header__menu {
+    display: block;
+  }
+
+  .header__profile {
+		display: none;
+	}
+
+	.header-nav__movies {
+		display: none;
+	}
+
+	.header-nav__saved-movies {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 0 14px;
+  }
+
+  .header-auth__register {
+    margin-right: 14px;
+  }
+
+  .header-auth__button {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+  }
+
+	.header__menu {
+		width: 40px;
+		height: 43px;
+	}
+}
+
