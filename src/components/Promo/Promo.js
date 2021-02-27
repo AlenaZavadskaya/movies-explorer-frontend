@@ -12,7 +12,7 @@ function Promo() {
         <p className="promo__subtitle">
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
-        <button className="promo__button">Узнать больше</button>
+        <a href="#aboutProject" className="promo__button">Узнать больше</a>
       </div>
       <img className="promo__logo" src={Logo} alt="лого" />
     </section>
