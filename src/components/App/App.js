@@ -14,32 +14,31 @@ import * as MoviesApi from "../../utils/MoviesApi";
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    Promise.all([/*api.getUserData(),*/ MoviesApi.getInitialMovies()])
-      .then(([initialMovies]) => {
-        console.log("1", initialMovies);
-        // console.log("2", initialMovies.image.url)
-        setMovies(initialMovies);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
-  }, []);
-  //     .then(([userData, initialCards]) => {
-  //       setCurrentUser({
-  //         name: userData.name,
-  //         about: userData.about,
-  //         avatar: userData.avatar,
-  //         _id: userData._id,
-  //       });
-  //       setCards(initialCards);
+  // useEffect(() => {
+  //   Promise.all([/*api.getUserData(),*/ MoviesApi.getInitialMovies()])
+  //     .then(([initialMovies]) => {
+  //       console.log("1", initialMovies);
+  //       // console.log("2", initialMovies.image.url)
+  //       setMovies(initialMovies);
   //     })
   //     .catch((err) => {
   //       console.log(`Ошибка: ${err}`);
   //     });
-  //   // eslint-disable-next-line
-  // }, [loggedIn]);
+  // }, []);
+
+  function handleGetMovies() {
+    setIsLoading(true);
+    MoviesApi.getInitialMovies()
+      .then((allMovies) => {
+        setIsLoading(false);
+        setMovies(allMovies);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
 
   function handleMenu() {
     setIsMenuOpen(!isMenuOpen);
@@ -56,7 +55,12 @@ function App() {
           <Main />
         </Route>
         <Route path="/movies">
-          <MoviesCardList onMenu={handleMenu} movies={movies} />
+          <MoviesCardList
+            onMenu={handleMenu}
+            movies={movies}
+            onGetMovies={handleGetMovies}
+            isLoading={isLoading}
+          />
         </Route>
         <Route path="/sign-up">
           <Register />
