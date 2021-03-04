@@ -1,28 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../Navigation/Navigation.css";
 
 function Navigation(props) {
   return (
     <>
       <nav className="header-nav">
-        <Link to="/">
+        <NavLink to="/">
           <div className="header__logo" />
-        </Link>
-        <Link to="/movies" className="header-nav__movies">
+        </NavLink>
+        <NavLink to="/movies" className="header-nav__movies" activeClassName="header-nav__movies_active">
           Фильмы
-        </Link>
-        <Link to="/movies" className="header-nav__saved-movies">
-					Сохраненные фильмы
-        </Link>
-				{/* <Link to="/saved-movies" className="header-nav__saved-movies">
+        </NavLink>
+				<NavLink to="/saved-movies" className="header-nav__saved-movies" activeClassName="header-nav__movies_active">
           Сохраненные фильмы
-        </Link> */}
+        </NavLink>
       </nav>
       <div className="header-auth">
-        <Link to="/profile">
+        <NavLink to="/profile">
           <div className="header__profile" />
-        </Link>
+        </NavLink>
         <div className="header__menu" onClick={props.onClick}/>
       </div>
     </>
