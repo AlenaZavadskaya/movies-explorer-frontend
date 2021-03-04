@@ -56,6 +56,17 @@
   height: 12px;
 }
 
+.card__like:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.card__like_active {
+	background: url(../../images/like-active.svg) no-repeat center;
+  width: 14px;
+  height: 12px;
+}
+
 .card__img {
   width: 220px;
   height: 122px;
