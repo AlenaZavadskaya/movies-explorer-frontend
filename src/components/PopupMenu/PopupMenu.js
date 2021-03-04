@@ -5,7 +5,10 @@ import "../Header/Header.css";
 
 function PopupMenu(props) {
   return (
-    <div className={`popup ${props.isOpen ? "popup_opened" : ""}`} onClick={props.onClose}>
+    <div
+      className={`popup ${props.isOpen ? "popup_opened" : ""}`}
+      onClick={props.onClose}
+    >
       <div className="popup__container">
         <button
           className="popup__close"
@@ -19,15 +22,9 @@ function PopupMenu(props) {
           <Link to="/movies" className="header-nav__movies popup__nav">
             Фильмы
           </Link>
-          <Link
-            to="/movies"
-            className="header-nav__saved-movies popup__nav"
-          >
-						Сохраненные фильмы
+          <Link to="/saved-movies" className="header-nav__saved-movies popup__nav">
+            Сохраненные фильмы
           </Link>
-						{/* <Link to="/saved-movies" className="header-nav__saved-movies">
-          Сохраненные фильмы
-        </Link> */}
         </nav>
         <div className="header-auth">
           <Link to="/profile">

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
@@ -15,18 +16,6 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   Promise.all([/*api.getUserData(),*/ MoviesApi.getInitialMovies()])
-  //     .then(([initialMovies]) => {
-  //       console.log("1", initialMovies);
-  //       // console.log("2", initialMovies.image.url)
-  //       setMovies(initialMovies);
-  //     })
-  //     .catch((err) => {
-  //       console.log(`Ошибка: ${err}`);
-  //     });
-  // }, []);
 
   function handleGetMovies() {
     setIsLoading(true);
@@ -55,7 +44,15 @@ function App() {
           <Main />
         </Route>
         <Route path="/movies">
-          <MoviesCardList
+          <Movies
+            onMenu={handleMenu}
+            movies={movies}
+            onGetMovies={handleGetMovies}
+            isLoading={isLoading}
+          />
+        </Route>
+        <Route path="/saved-movies">
+          <SavedMovies
             onMenu={handleMenu}
             movies={movies}
             onGetMovies={handleGetMovies}
