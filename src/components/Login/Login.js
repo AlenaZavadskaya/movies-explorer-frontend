@@ -37,7 +37,7 @@ function Login(props) {
         id="form-enter"
         title="Рады видеть!"
         isLoading={props.isLoading ? "Вход..." : "Войти"}
-        isOpen={props.isOpen}
+        // isOpen={props.isOpen}
         onSubmit={handleSubmit}
         Link={
           <Link to="/sign-up" className="form__request-auth">

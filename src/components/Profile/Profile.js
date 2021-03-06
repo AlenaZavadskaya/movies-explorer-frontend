@@ -1,25 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../Profile/Profile.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Profile(props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
-  function handleChangeName(e) {
-    setName(e.target.value);
-  }
-
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   props.onRegister(name, email);
-  // }
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <>
@@ -34,7 +21,7 @@ function Profile(props) {
           noValidate
         >
           <div className="form__container_auth">
-            <h2 className="form__heading-profile">Привет, Виталий!</h2>
+            <h2 className="form__heading-profile">{`Привет, ${currentUser.name}!`}</h2>
             <fieldset className="form__inputs">
               <div className="form__input-container-profile">
                 <label className="form__field-profile">
@@ -46,9 +33,7 @@ function Profile(props) {
                     placeholder="Имя"
                     minLength="2"
                     maxLength="40"
-                    value={name}
-                    onChange={handleChangeName}
-                    required
+                    defaultValue={currentUser.name}
                   />
                   <span id="name-input-error" className="form__item-error">
                     {props.message}
@@ -65,9 +50,7 @@ function Profile(props) {
                     placeholder="Почта"
                     minLength="2"
                     maxLength="40"
-                    value={email}
-                    onChange={handleChangeEmail}
-                    required
+                    defaultValue={currentUser.email}
                   />
                   <span id="name-input-error" className="form__item-error">
                     {props.message}
@@ -80,7 +63,11 @@ function Profile(props) {
                 </button>
               </div>
             </fieldset>
-            <Link to="/sign-in" className="form__exit">
+            <Link
+              to="/sign-in"
+              className="form__exit"
+              onClick={props.onSignOut}
+            >
               Выйти из аккаунта
             </Link>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../Navigation/Navigation.css";
 
 function Navigation(props) {
@@ -9,18 +9,26 @@ function Navigation(props) {
         <NavLink to="/">
           <div className="header__logo" />
         </NavLink>
-        <NavLink to="/movies" className="header-nav__movies" activeClassName="header-nav__movies_active">
+        <NavLink
+          to="/movies"
+          className="header-nav__movies"
+          activeClassName="header-nav__movies_active"
+        >
           Фильмы
         </NavLink>
-				<NavLink to="/saved-movies" className="header-nav__saved-movies" activeClassName="header-nav__movies_active">
+        <NavLink
+          to="/saved-movies"
+          className="header-nav__saved-movies"
+          activeClassName="header-nav__movies_active"
+        >
           Сохраненные фильмы
         </NavLink>
       </nav>
       <div className="header-auth">
-        <NavLink to="/profile">
+        <Link to="/profile">
           <div className="header__profile" />
-        </NavLink>
-        <div className="header__menu" onClick={props.onClick}/>
+        </Link>
+        <div className="header__menu" onClick={props.onClick} />
       </div>
     </>
   );
