@@ -62,7 +62,7 @@
 }
 
 .card__like_active {
-	background: url(../../images/like-active.svg) no-repeat center;
+  background: url(../../images/like-active.svg) no-repeat center;
   width: 14px;
   height: 12px;
 }
@@ -70,10 +70,24 @@
 .card__img {
   width: 220px;
   height: 122px;
+  object-fit: cover;
   margin: 6px 6px 6px auto;
 }
 
-@media screen and (max-width: 450px) {
+.card__img:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.card__delete {
+  background: url(../../images/delete-icon.svg) no-repeat center;
+  width: 14px;
+  height: 12px;
+}
+
+.card__delete:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
