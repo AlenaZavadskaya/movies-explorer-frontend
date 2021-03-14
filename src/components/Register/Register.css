@@ -1,28 +1,2 @@
-.form__item_error {
-  border-bottom-color: #ee3465;
-  color: #ee3465;
-}
 
-.form__item {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  color: #000000;
-  border: 0;
-  width: 100%;
-  box-sizing: border-box;
-  border-bottom: 1px solid #e8e8e8;
-  padding: 5px 0 10px 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-  cursor: text;
-}
 
-.form__item:focus {
-  outline: none;
-  border-bottom: 1px solid #2be080;
-}

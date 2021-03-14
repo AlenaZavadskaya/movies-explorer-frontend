@@ -5,7 +5,7 @@ import "../Form/Form.css";
 function Form(props) {
   return (
     <section id={props.name}>
-      <form className="form" id={props.id} onSubmit={props.onSubmit} noValidate>
+      <form className="form" id={props.id} onSubmit={props.onSubmit}>
         <Link to="/">
           <div className="header__logo" />
         </Link>
@@ -13,11 +13,6 @@ function Form(props) {
           <h2 className="form__heading">{props.title}</h2>
           <fieldset className="form__input-container">
             {props.children}
-            <div className="form__handlers">
-              <button className="submit__button-form" type="submit">
-                {props.isLoading}
-              </button>
-            </div>
           </fieldset>
           {props.Link}
         </div>
