@@ -5,7 +5,6 @@ import "../More/More.css";
 const MoviesCard = React.lazy(() => import("../MoviesCard/MoviesCard")); // Ленивая загрузка
 
 function MoviesCardList(props) {
-  debugger;
   const [counter, setCounter] = React.useState(4);
 
   function showMoreMovies() {

@@ -33,7 +33,6 @@ class MainApi {
   }
 
 	getUserMovies() {
-		debugger
 		const token = localStorage.getItem('jwt');
     if (token !== "Bearer null") {
       return fetch(`${this._url}${"movies"}`, {
