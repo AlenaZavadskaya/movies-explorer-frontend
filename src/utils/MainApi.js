@@ -8,20 +8,20 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-	getUserData(token) {
+  getUserData(token) {
     if (this._headers.authorization !== "Bearer null") {
       return fetch(`${this._url}${"users"}/${"me"}`, {
         method: "GET",
-		  headers: {
-			authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-			Accept: "application/json",
-		 },
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       }).then(this._getResponse);
     }
   }
 
-	editUserInfo(newData) {
+  editUserInfo(newData) {
     return fetch(`${this._url}users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -32,21 +32,21 @@ class MainApi {
     }).then(this._getResponse);
   }
 
-	getUserMovies() {
-		const token = localStorage.getItem('jwt');
+  getUserMovies() {
+    const token = localStorage.getItem("jwt");
     if (token !== "Bearer null") {
       return fetch(`${this._url}${"movies"}`, {
         method: "GET",
-		  headers: {
-			authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-			Accept: "application/json",
-		 },
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       }).then(this._getResponse);
     }
   }
 
-	addMovie(movie) {
+  addMovie(movie) {
     return fetch(`${this._url}${"movies"}`, {
       method: "POST",
       headers: this._headers,
@@ -66,7 +66,7 @@ class MainApi {
     }).then(this._getResponse);
   }
 
-	deleteMovie(id) {
+  deleteMovie(id) {
     return fetch(`${this._url}${"movies"}/${id}`, {
       method: "DELETE",
       headers: this._headers,
@@ -75,8 +75,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // url: "https://api.alenazavadskaya.students.nomoredomains.monster/",
-  url: "http://localhost:3000/",
+  url: "https://www.api.a-z.movies-explorer.students.nomoredomains.monster/",
+  //   url: "http://localhost:3000/",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
