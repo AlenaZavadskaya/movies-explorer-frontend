@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import More from "../More/More";
+import "../FilterCheckbox/FilterCheckbox.css";
 import Footer from "../Footer/Footer";
 
 function SavedMovies(props) {
@@ -15,13 +15,17 @@ function SavedMovies(props) {
         <Navigation onClick={props.onMenu} />
       </Header>
       <SearchForm onGetMovies={props.onGetMovies} />
-      <FilterCheckbox />
-      <MoviesCardList
-        movies={props.movies}
-        onGetMovies={props.handleGetMovies}
-        isLoading={props.isLoading}
+      <FilterCheckbox
+        onFilter={props.onFilter}
+        isShortMovie={props.isShortMovie}
       />
-      <More />
+      <MoviesCardList
+        isSavedMovies={props.isSavedMovies}
+        movies={props.movies}
+        onGetMovies={props.onGetMovies}
+        onDelete={props.onDelete}
+        message={props.message}
+      />
       <Footer />
     </section>
   );
