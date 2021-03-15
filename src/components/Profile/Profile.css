@@ -15,16 +15,32 @@
   outline: none;
   padding: 0;
   background: transparent;
-  margin: 220px 0 16px;
+  margin: 0 0 16px;
+  transition: 0.3s linear;
 }
 
 .submit__button-profile:hover {
-	opacity: 0.8;
+  opacity: 0.8;
   cursor: pointer;
 }
 
+.submit__button-profile_disabled {
+  opacity: 0.4;
+}
+
+.submit__button-profile_disabled:hover {
+  cursor: unset;
+  opacity: 0.4;
+}
+
+.form__item-message {
+  font-size: 13px;
+  line-height: 16px;
+  margin: 220px 0 16px;
+}
+
 .form__inputs {
-	max-width: 410px;
+  max-width: 410px;
   padding: 0;
   margin: 0 auto;
   border: 0;
@@ -56,7 +72,7 @@
   text-align: center;
   color: #000000;
   margin: 74px auto 123px;
-	max-width: 204px;
+  max-width: 204px;
 }
 
 .form__item-profile {
@@ -65,6 +81,20 @@
   border-bottom: 0;
   padding: 0;
   text-align: end;
+}
+
+.form__item-profile:focus {
+  outline: none;
+  border-bottom: 0;
+}
+
+.form__item-profile_error {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ff004c;
 }
 
 .form__field-profile {
@@ -86,31 +116,47 @@
   margin-bottom: 17px;
 }
 
-.form__input-container-profile:nth-child(2) {
+.form__profile_span {
+  margin-bottom: 10px;
+}
+
+.form__input-container_border {
   padding-bottom: 0;
-	border-bottom: none;
+  border-bottom: none;
   margin-bottom: 0;
 }
 
 @media screen and (max-width: 450px) {
-	.form__profile {
-		max-width: 260px;
-	}
+  .form__profile {
+    max-width: 260px;
+  }
+
+  .form__item-profile_error {
+    font-size: 10px;
+  }
 }
 
 @media screen and (max-width: 320px) {
-	.form__heading-profile {
-	margin: 70px auto 80px;
-	}
+  .form__heading-profile {
+    margin: 70px auto 80px;
+  }
 
-	.submit__button-profile {
-		font-size: 12px;
-		line-height: 15px;
-		margin: 379px 0 16px;
-	}
+  .submit__button-profile {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 379px 0 16px;
+  }
 }
 
-::-webkit-input-placeholder {color:black;}
-::-moz-placeholder          {color:black;}/* Firefox 19+ */
-:-moz-placeholder           {color:black;}/* Firefox 18- */
-:-ms-input-placeholder      {color:black;}
+::-webkit-input-placeholder {
+  color: black;
+}
+::-moz-placeholder {
+  color: black;
+} /* Firefox 19+ */
+:-moz-placeholder {
+  color: black;
+} /* Firefox 18- */
+:-ms-input-placeholder {
+  color: black;
+}

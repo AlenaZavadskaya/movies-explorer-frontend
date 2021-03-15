@@ -18,6 +18,9 @@
   height: 34px;
   transition: 0.1s linear 0.1s;
   display: block;
+  padding: 0;
+  border: 0;
+  outline: none;
 }
 
 .search-form__search-icon:hover {
