@@ -14,7 +14,6 @@ const getResponse = (res) => {
 };
 
 export const register = (name, email, password) => {
-  debugger;
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: headers,

@@ -1,4 +1,5 @@
-export const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";
+import { BASE_URL } from "../utils/config";
+
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",
@@ -12,10 +13,12 @@ const getResponse = (res) => {
 };
 
 export const getInitialMovies = () => {
-  return fetch(`${BASE_URL}`, {
-    method: "GET",
-    headers: headers,
-  }).then((res) => {
-    return getResponse(res);
-  });
+  if (headers.authorization !== "Bearer null") {
+    return fetch(`${BASE_URL}`, {
+      method: "GET",
+      headers: headers,
+    }).then((res) => {
+      return getResponse(res);
+    });
+  }
 };

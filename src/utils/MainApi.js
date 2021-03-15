@@ -8,33 +8,81 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserData() {
+	getUserData(token) {
     if (this._headers.authorization !== "Bearer null") {
       return fetch(`${this._url}${"users"}/${"me"}`, {
         method: "GET",
-        headers: this._headers,
+		  headers: {
+			authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		 },
       }).then(this._getResponse);
     }
   }
 
-  getUserMovies() {
-    if (this._headers.authorization !== "Bearer null") {
+	editUserInfo(newData) {
+    return fetch(`${this._url}users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: newData.name,
+        email: newData.email,
+      }),
+    }).then(this._getResponse);
+  }
+
+	getUserMovies() {
+		debugger
+		const token = localStorage.getItem('jwt');
+    if (token !== "Bearer null") {
       return fetch(`${this._url}${"movies"}`, {
         method: "GET",
-        headers: this._headers,
-      }).then(this._getResponse)
+		  headers: {
+			authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		 },
+      }).then(this._getResponse);
     }
+  }
+
+	addMovie(movie) {
+    return fetch(`${this._url}${"movies"}`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image,
+        trailer: movie.trailer,
+        thumbnail: movie.thumbnail,
+        movieId: movie.movieId,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      }),
+    }).then(this._getResponse);
+  }
+
+	deleteMovie(id) {
+    return fetch(`${this._url}${"movies"}/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._getResponse);
   }
 }
 
 const mainApi = new MainApi({
-	// url: "https://api.alenazavadskaya.students.nomoredomains.monster/",
-	url: 'http://localhost:3000/',
-	headers: {
-		authorization: `Bearer ${localStorage.getItem("jwt")}`,
-		"Content-Type": "application/json",
-		Accept: "application/json",
-	},
+  // url: "https://api.alenazavadskaya.students.nomoredomains.monster/",
+  url: "http://localhost:3000/",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
 });
 
 export default mainApi;

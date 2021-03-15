@@ -151,6 +151,7 @@
   font-size: 11px;
   line-height: 13px;
   color: #ff004c;
+  /* text-align: center; */
 }
 
 .form__item-error:focus {
