@@ -37,11 +37,7 @@ class MainApi {
     if (token !== "Bearer null") {
       return fetch(`${this._url}${"movies"}`, {
         method: "GET",
-        headers: {
-          authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: this._headers,
       }).then(this._getResponse);
     }
   }
@@ -76,7 +72,7 @@ class MainApi {
 
 const mainApi = new MainApi({
   url: "https://api.alena.movies.students.nomoredomains.monster/",
-  //  url: "http://localhost:3000/",
+  //   url: "http://localhost:3000/",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",

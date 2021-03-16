@@ -28,6 +28,27 @@ function App() {
   const [moviesMessage, setMoviesMessage] = useState("");
   const history = useHistory();
 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt !== null) {
+      auth
+        .getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            getCurrentUser();
+            setCurrentUser(res);
+            history.push("/movies");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("jwt");
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loggedIn]);
+
   function handleRegister(name, email, password) {
     auth
       .register(name, email, password)
@@ -35,6 +56,7 @@ function App() {
         if (res) {
           setMessage("");
           handleLogin(email, password);
+          // history.push("/sign-in");
         }
       })
       .catch((err) => {
@@ -71,6 +93,7 @@ function App() {
         if (err === 400) {
           setMessage("Неверный email или пароль");
         }
+        localStorage.removeItem("jwt");
       });
   }
 
@@ -97,6 +120,8 @@ function App() {
     localStorage.removeItem("movies");
     localStorage.removeItem("sortedMovies");
     setUserMovies([]);
+    setSortedMovies([]);
+    setCurrentUser({});
     setLoggedIn(false);
     setMessage("");
     history.push("/");
@@ -222,43 +247,22 @@ function App() {
 
   function getCurrentUser() {
     const jwt = localStorage.getItem("jwt");
-    if (jwt === null) {
-      return;
-    }
-    mainApi
-      .getUserData(jwt)
-      .then((userData) => {
-        if (userData) {
-          setCurrentUser(userData);
-          localStorage.setItem("currentUser", JSON.stringify(userData));
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  React.useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth
-        .getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            getCurrentUser();
-            history.push("/movies");
+    if (jwt !== null) {
+      mainApi
+        .getUserData(jwt)
+        .then((userData) => {
+          if (userData) {
+            setCurrentUser(userData);
+            localStorage.setItem("currentUser", JSON.stringify(userData));
           }
         })
         .catch((err) => {
           console.log(err);
           localStorage.removeItem("jwt");
+          localStorage.removeItem("currentUser");
         });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
-
-  
+  }
 
   useEffect(() => {
     if (loggedIn) {
