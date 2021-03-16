@@ -27,7 +27,6 @@ function App() {
   const [message, setMessage] = useState("");
   const [moviesMessage, setMoviesMessage] = useState("");
   const history = useHistory();
-  let location = useLocation();
 
   function handleRegister(name, email, password) {
     auth
@@ -35,7 +34,7 @@ function App() {
       .then((res) => {
         if (res) {
           setMessage("");
-          history.push("/sign-in");
+          handleLogin(email, password);
         }
       })
       .catch((err) => {
@@ -96,6 +95,7 @@ function App() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("userMovies");
     localStorage.removeItem("movies");
+    localStorage.removeItem("sortedMovies");
     setUserMovies([]);
     setLoggedIn(false);
     setMessage("");
@@ -127,6 +127,7 @@ function App() {
         return movie;
       });
       setSortedMovies(checkedLikes);
+      localStorage.setItem("sortedMovies", JSON.stringify(checkedLikes));
     }
   }
 
@@ -209,7 +210,6 @@ function App() {
         setMoviesMessage("");
         localStorage.setItem("userMovies", JSON.stringify(savedMoviesList));
         setUserMovies(savedMoviesList);
-        console.log(userMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -239,7 +239,6 @@ function App() {
   }
 
   React.useEffect(() => {
-    const path = location.pathname;
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       auth
@@ -248,19 +247,20 @@ function App() {
           if (res) {
             setLoggedIn(true);
             getCurrentUser();
-            history.push(path);
+            history.push("/movies");
           }
         })
         .catch((err) => {
           console.log(err);
           localStorage.removeItem("jwt");
-          history.push("/");
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [loggedIn]);
 
-  React.useEffect(() => {
+  
+
+  useEffect(() => {
     if (loggedIn) {
       getCurrentUser();
       getSavedMovies();

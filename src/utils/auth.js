@@ -1,6 +1,6 @@
 export const BASE_URL =
-  // "https://api.a-z.movies-explorer.students.nomoredomains.monster";
-  "http://localhost:3000";
+  "https://api.alena.movies.students.nomoredomains.monster";
+//   "http://localhost:3000";
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",

@@ -18,14 +18,15 @@ function SavedMovies(props) {
       <FilterCheckbox
         onFilter={props.onFilter}
         isShortMovie={props.isShortMovie}
-      />
-      <MoviesCardList
+		  />
+		  {props.movies.length > 0 ? <MoviesCardList
         isSavedMovies={props.isSavedMovies}
         movies={props.movies}
         onGetMovies={props.onGetMovies}
         onDelete={props.onDelete}
         message={props.message}
-      />
+      /> : "У вас пока нет сохраненных фильмов"}
+      
       <Footer />
     </section>
   );
