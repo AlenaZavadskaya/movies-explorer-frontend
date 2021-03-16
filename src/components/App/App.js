@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useHistory} from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import "./App.css";
 
 import Movies from "../Movies/Movies";
@@ -11,7 +11,7 @@ import NotFound from "../NotFound/NotFound";
 import Main from "../Main/Main";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import * as moviesApi from "../../utils/MoviesApi";
-import mainApi from "../../utils/MainApi";
+import MainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -27,6 +27,16 @@ function App() {
   const [message, setMessage] = useState("");
   const [moviesMessage, setMoviesMessage] = useState("");
   const history = useHistory();
+
+  const mainApi = new MainApi({
+     url: "https://api.alena.movies.students.nomoredomains.monster/",
+    // url: "http://localhost:3000/",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -247,22 +257,19 @@ function App() {
   }
 
   function getCurrentUser() {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt !== null) {
-      mainApi
-        .getUserData()
-        .then((userData) => {
-          if (userData) {
-            setCurrentUser(userData);
-            localStorage.setItem("currentUser", JSON.stringify(userData));
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          localStorage.removeItem("jwt");
-          localStorage.removeItem("currentUser");
-        });
-    }
+    mainApi
+      .getUserData()
+      .then((userData) => {
+        if (userData) {
+          setCurrentUser(userData);
+          localStorage.setItem("currentUser", JSON.stringify(userData));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("currentUser");
+      });
   }
 
   useEffect(() => {
