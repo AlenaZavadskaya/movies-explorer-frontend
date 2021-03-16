@@ -136,10 +136,10 @@ function Profile(props) {
                 <div className="form__item-message">{props.message}</div>
                 <button
                   className={`submit__button-profile ${
-                    !formValid ? "submit__button-profile_disabled" : ""
+							!formValid || name < 2 || email < 2 ? "submit__button-profile_disabled" : ""
                   }`}
                   type="submit"
-                  disabled={!formValid}
+                  disabled={!formValid || name < 2 || email < 2}
                   onClick={changeInputDisabled}
                 >
                   Редактировать
