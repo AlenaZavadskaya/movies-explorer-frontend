@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory} from "react-router-dom";
 import "./App.css";
 
 import Movies from "../Movies/Movies";
@@ -29,15 +29,17 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
+    debugger
     const jwt = localStorage.getItem("jwt");
     if (jwt !== null) {
       auth
         .getContent(jwt)
         .then((res) => {
           if (res) {
+            debugger
             setLoggedIn(true);
             getCurrentUser();
-            setCurrentUser(res);
+            // setCurrentUser(res);
             history.push("/movies");
           }
         })
@@ -119,6 +121,7 @@ function App() {
     localStorage.removeItem("userMovies");
     localStorage.removeItem("movies");
     localStorage.removeItem("sortedMovies");
+    localStorage.removeItem("currentUser");
     setUserMovies([]);
     setSortedMovies([]);
     setCurrentUser({});
@@ -246,11 +249,14 @@ function App() {
   }
 
   function getCurrentUser() {
+    debugger
     const jwt = localStorage.getItem("jwt");
     if (jwt !== null) {
+      debugger
       mainApi
         .getUserData(jwt)
         .then((userData) => {
+          debugger
           if (userData) {
             setCurrentUser(userData);
             localStorage.setItem("currentUser", JSON.stringify(userData));
