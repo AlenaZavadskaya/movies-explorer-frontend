@@ -8,15 +8,11 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserData(token) {
+  getUserData() {
     if (this._headers.authorization !== "Bearer null") {
       return fetch(`${this._url}${"users"}/${"me"}`, {
         method: "GET",
-        headers: {
-          authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: this._headers,
       }).then(this._getResponse);
     }
   }
@@ -71,8 +67,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  url: "https://api.alena.movies.students.nomoredomains.monster/",
-  //   url: "http://localhost:3000/",
+    url: "https://api.alena.movies.students.nomoredomains.monster/",
+//   url: "http://localhost:3000/",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",

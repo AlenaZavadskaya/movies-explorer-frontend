@@ -29,14 +29,12 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    debugger
     const jwt = localStorage.getItem("jwt");
     if (jwt !== null) {
       auth
         .getContent(jwt)
         .then((res) => {
           if (res) {
-            debugger
             setLoggedIn(true);
             getCurrentUser();
             // setCurrentUser(res);
@@ -249,14 +247,11 @@ function App() {
   }
 
   function getCurrentUser() {
-    debugger
     const jwt = localStorage.getItem("jwt");
     if (jwt !== null) {
-      debugger
       mainApi
-        .getUserData(jwt)
+        .getUserData()
         .then((userData) => {
-          debugger
           if (userData) {
             setCurrentUser(userData);
             localStorage.setItem("currentUser", JSON.stringify(userData));
