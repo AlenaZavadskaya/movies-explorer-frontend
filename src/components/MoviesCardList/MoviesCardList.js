@@ -30,6 +30,7 @@ function MoviesCardList(props) {
                     onAddMovie={props.onAddMovie}
                     onDelete={props.onDelete}
                     savedMovies={props.savedMovies}
+                    likedMovies={props.likedMovies}
                   />
                 ))}
         </Suspense>

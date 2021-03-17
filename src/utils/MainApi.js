@@ -8,13 +8,15 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserData() {
-    if (this._headers.authorization !== "Bearer null") {
-      return fetch(`${this._url}${"users"}/${"me"}`, {
-        method: "GET",
-        headers: this._headers,
-      }).then(this._getResponse);
-    }
+  getUserData(jwt) {
+    return fetch(`${this._url}${"users"}/${"me"}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }).then(this._getResponse);
   }
 
   editUserInfo(newData) {
@@ -28,20 +30,25 @@ class MainApi {
     }).then(this._getResponse);
   }
 
-  getUserMovies() {
-    const token = localStorage.getItem("jwt");
-    if (token !== "Bearer null") {
-      return fetch(`${this._url}${"movies"}`, {
-        method: "GET",
-        headers: this._headers,
-      }).then(this._getResponse);
-    }
+  getUserMovies(jwt) {
+    return fetch(`${this._url}${"movies"}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }).then(this._getResponse);
   }
 
-  addMovie(movie) {
+  addMovie(movie, jwt) {
     return fetch(`${this._url}${"movies"}`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify({
         country: movie.country,
         director: movie.director,
@@ -66,4 +73,14 @@ class MainApi {
   }
 }
 
-export default MainApi;
+const mainApi = new MainApi({
+  url: "https://api.alena.movies.students.nomoredomains.monster/",
+  //   url: "http://localhost:3000/",
+  headers: {
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+});
+
+export default mainApi;

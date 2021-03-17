@@ -27,6 +27,7 @@ function Movies(props) {
         isSavedMovies={false}
         message={props.message}
         savedMovies={props.savedMovies}
+        likedMovies={props.likedMovies}
       />
       <Footer />
     </>

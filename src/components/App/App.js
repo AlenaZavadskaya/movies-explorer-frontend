@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import "./App.css";
 
 import Movies from "../Movies/Movies";
@@ -11,7 +11,7 @@ import NotFound from "../NotFound/NotFound";
 import Main from "../Main/Main";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import * as moviesApi from "../../utils/MoviesApi";
-import MainApi from "../../utils/MainApi";
+import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -27,18 +27,10 @@ function App() {
   const [message, setMessage] = useState("");
   const [moviesMessage, setMoviesMessage] = useState("");
   const history = useHistory();
-
-  const mainApi = new MainApi({
-     url: "https://api.alena.movies.students.nomoredomains.monster/",
-    // url: "http://localhost:3000/",
-    headers: {
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  });
+  let location = useLocation();
 
   useEffect(() => {
+    const path = location.pathname;
     const jwt = localStorage.getItem("jwt");
     if (jwt !== null) {
       auth
@@ -47,17 +39,19 @@ function App() {
           if (res) {
             setLoggedIn(true);
             getCurrentUser();
-            // setCurrentUser(res);
-            history.push("/movies");
+            setCurrentUser(res);
+            history.push(path);
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log(`Переданный токен некорректен или просрочек: ${err}`);
           localStorage.removeItem("jwt");
+          history.push("/");
         });
     }
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn]);
+  }, []);
 
   function handleRegister(name, email, password) {
     auth
@@ -66,7 +60,8 @@ function App() {
         if (res) {
           setMessage("");
           handleLogin(email, password);
-          // history.push("/sign-in");
+          setLoggedIn(true);
+          setCurrentUser(res);
         }
       })
       .catch((err) => {
@@ -168,13 +163,14 @@ function App() {
   }
 
   function handleLikeClick(movie) {
+    const jwt = localStorage.getItem("jwt");
     mainApi
-      .addMovie(movie)
+      .addMovie(movie, jwt)
       .then((newMovie) => {
         if (!newMovie) {
           throw new Error("При добавлении фильма произошла ошибка");
         } else {
-          setUserMovies([newMovie, ...userMovies]);
+          setUserMovies(newMovie = [newMovie, ...userMovies]);
         }
       })
       .catch((err) => {
@@ -235,34 +231,15 @@ function App() {
     }
   }
 
-  function getSavedMovies() {
-    mainApi
-      .getUserMovies()
-      .then((savedMovies) => {
-        const userData = JSON.parse(localStorage.getItem("currentUser"));
-        const savedMoviesList = savedMovies.filter(
-          (item) => item.owner._id === userData._id
-        );
-        setMoviesMessage("");
-        localStorage.setItem("userMovies", JSON.stringify(savedMoviesList));
-        setUserMovies(savedMoviesList);
-      })
-      .catch((err) => {
-        console.log(err);
-        localStorage.removeItem("userMovies");
-        setMoviesMessage(
-          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-        );
-      });
-  }
-
   function getCurrentUser() {
+    const jwt = localStorage.getItem("jwt");
     mainApi
-      .getUserData()
+      .getUserData(jwt)
       .then((userData) => {
         if (userData) {
           setCurrentUser(userData);
           localStorage.setItem("currentUser", JSON.stringify(userData));
+          history.push("/movies");
         }
       })
       .catch((err) => {
@@ -273,12 +250,33 @@ function App() {
   }
 
   useEffect(() => {
-    if (loggedIn) {
-      getCurrentUser();
-      getSavedMovies();
+    const jwt = localStorage.getItem("jwt");
+    if (jwt !== null) {
+      Promise.all([mainApi.getUserData(jwt), mainApi.getUserMovies(jwt)])
+        .then(([userData, savedMovies]) => {
+          localStorage.setItem("currentUser", JSON.stringify(userData));
+          setCurrentUser(userData);
+
+          const savedMoviesList = savedMovies.filter(
+            (item) => item.owner._id === userData._id
+          );
+          localStorage.setItem("userMovies", JSON.stringify(savedMoviesList));
+          setUserMovies(savedMoviesList);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
+
+  function checkSavedMovie(movie) {
+    return userMovies.some((item) => item.movieId === movie.id);
+  }
+
+  useEffect(() => {
+    checkSavedMovie(setSortedMovies);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userMovies]);
 
   useEffect(() => {
     moviesApi
@@ -311,6 +309,8 @@ function App() {
           isShortMovie={shortMovies}
           message={moviesMessage}
           savedMovies={userMovies}
+          onSignOut={handleSignOut}
+          likedMovies={checkSavedMovie}
         />
         <ProtectedRoute
           path="/saved-movies"
@@ -324,6 +324,7 @@ function App() {
           onFilter={handleCheckBox}
           message={moviesMessage}
           isSavedMovies={true}
+          onSignOut={handleSignOut}
         />
         <Route path="/sign-up">
           <Register onRegister={handleRegister} message={message} />
