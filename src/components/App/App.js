@@ -170,7 +170,11 @@ function App() {
         if (!newMovie) {
           throw new Error("При добавлении фильма произошла ошибка");
         } else {
-          setUserMovies(newMovie = [newMovie, ...userMovies]);
+          localStorage.setItem(
+            "userMovies",
+            JSON.stringify((newMovie = [newMovie.movie, ...userMovies]))
+          );
+          setUserMovies(newMovie);
         }
       })
       .catch((err) => {

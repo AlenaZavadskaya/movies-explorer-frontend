@@ -4,7 +4,7 @@ import "../Header/Header.css";
 import { baseUrl } from "../../utils/config";
 
 function MoviesCard(props) {
-  //  const isLiked = !props.isSavedMovies && props.movie.isSaved;
+  // const isLiked = !props.isSavedMovies && props.movie.isSaved;
   const isLiked = !props.isSavedMovies && props.likedMovies(props.movie);
 
   function handleLikeClick() {

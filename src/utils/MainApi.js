@@ -75,7 +75,7 @@ class MainApi {
 
 const mainApi = new MainApi({
   url: "https://api.alena.movies.students.nomoredomains.monster/",
-  //   url: "http://localhost:3000/",
+  //  url: "http://localhost:3000/",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
