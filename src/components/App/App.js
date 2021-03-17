@@ -15,6 +15,7 @@ import mainApi from "../../utils/MainApi";
 import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { MAX_SHORT_MOVIE_DORATION } from "../../utils/config";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -231,7 +232,9 @@ function App() {
 
   function filterShortMovies(arr) {
     if (arr.length !== 0 || arr !== "undefind") {
-      return arr.filter((movie) => (shortMovies ? movie.duration <= 40 : true));
+      return arr.filter((movie) =>
+        shortMovies ? movie.duration <= MAX_SHORT_MOVIE_DORATION : true
+      );
     }
   }
 

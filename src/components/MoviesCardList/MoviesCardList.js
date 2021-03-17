@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import "../MoviesCard/MoviesCard.css";
 import Preloader from "../Preloader/Preloader";
 import "../More/More.css";
+import { MIN_NUMBER_OF_CARDS, MAX_NUMBER_OF_CARDS } from "../../utils/config";
 const MoviesCard = React.lazy(() => import("../MoviesCard/MoviesCard")); // Ленивая загрузка
 
 function MoviesCardList(props) {
@@ -35,9 +36,9 @@ function MoviesCardList(props) {
                 ))}
         </Suspense>
       </section>
-      {props.movies.length >= 4 &&
+      {props.movies.length >= MIN_NUMBER_OF_CARDS &&
       props.movies.length > counter &&
-      props.movies.length <= 100 &&
+      props.movies.length <= MAX_NUMBER_OF_CARDS &&
       !props.message ? (
         <section className="more">
           <button

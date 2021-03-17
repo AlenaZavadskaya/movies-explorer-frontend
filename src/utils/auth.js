@@ -1,6 +1,6 @@
-export const BASE_URL =
-  "https://api.alena.movies.students.nomoredomains.monster";
-//   "http://localhost:3000";
+import { AUTH } from "../utils/config";
+
+export const BASE_URL = AUTH;
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",
