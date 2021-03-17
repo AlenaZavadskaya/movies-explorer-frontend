@@ -243,7 +243,6 @@ function App() {
         if (userData) {
           setCurrentUser(userData);
           localStorage.setItem("currentUser", JSON.stringify(userData));
-          history.push("/movies");
         }
       })
       .catch((err) => {
