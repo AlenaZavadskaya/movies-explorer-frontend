@@ -15,25 +15,27 @@ function MoviesCardList(props) {
     <>
       <section className="movies-card">
         <Suspense fallback={<Preloader />}>
-          {props.message
-            ? props.message
-            : props.movies
-                .slice(0, counter)
-                .map((movie, id) => (
-                  <MoviesCard
-                    movie={movie}
-                    name={movie.nameRU}
-                    duration={movie.duration}
-                    key={id}
-                    id={movie._id}
-                    {...movie}
-                    isSavedMovies={props.isSavedMovies}
-                    onAddMovie={props.onAddMovie}
-                    onDelete={props.onDelete}
-                    savedMovies={props.savedMovies}
-                    likedMovies={props.likedMovies}
-                  />
-                ))}
+          {props.message ? (
+            <p className="movies-message">{props.message}</p>
+          ) : (
+            props.movies
+              .slice(0, counter)
+              .map((movie, id) => (
+                <MoviesCard
+                  movie={movie}
+                  name={movie.nameRU}
+                  duration={movie.duration}
+                  key={id}
+                  id={movie._id}
+                  {...movie}
+                  isSavedMovies={props.isSavedMovies}
+                  onAddMovie={props.onAddMovie}
+                  onDelete={props.onDelete}
+                  savedMovies={props.savedMovies}
+                  likedMovies={props.likedMovies}
+                />
+              ))
+          )}
         </Suspense>
       </section>
       {props.movies.length >= MIN_NUMBER_OF_CARDS &&

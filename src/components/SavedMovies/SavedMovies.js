@@ -22,13 +22,13 @@ function SavedMovies(props) {
       {props.movies.length > 0 ? (
         <MoviesCardList
           isSavedMovies={props.isSavedMovies}
-          movies={props.movies}
+					movies={props.movies}
           onGetMovies={props.onGetMovies}
           onDelete={props.onDelete}
           message={props.message}
         />
       ) : (
-        "У вас пока нет сохраненных фильмов"
+        <p className="movies-message">У вас пока нет сохраненных фильмов</p>
       )}
 
       <Footer />

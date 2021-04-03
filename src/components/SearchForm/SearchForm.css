@@ -41,9 +41,14 @@
   color: #a0a0a0;
 }
 
+.search-form__input:focus {
+	outline: none;
+	border-bottom: 1px solid #2be080;
+}
+
 .submit__button {
   background: url(../../images/find-button.svg) no-repeat right;
-  width: 80px;
+  width: 36px;
   height: 34px;
   border: none;
   padding: 0;

@@ -32,7 +32,7 @@ function MoviesCard(props) {
   }
 
   return (
-    <div className="card" key={props.movie._id}>
+    <div className="card">
       <div className="card__description">
         <ul className="card__description-container">
           <li className="card__title">{props.name || props.movie.nameRU}</li>

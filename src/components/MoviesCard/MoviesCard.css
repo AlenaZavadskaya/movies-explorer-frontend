@@ -103,7 +103,8 @@
 
   .card {
     flex-direction: column-reverse;
-    margin-bottom: 20px;
+    width: 300px;
+    margin: 0 auto 20px;
   }
 
   .card__description-container {
@@ -115,6 +116,10 @@
     justify-content: space-between;
     margin: 0 16px 0 12px;
     max-width: 300px;
+  }
+
+  .card__title {
+    max-width: 250px;
   }
 
   .card__duration {
