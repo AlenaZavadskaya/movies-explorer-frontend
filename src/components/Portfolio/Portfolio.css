@@ -33,11 +33,23 @@
   color: #000000;
   max-width: 880px;
   text-decoration: none;
+  transition: 0.1s linear 0.1s;
+}
+
+.portfolio__link:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .portfolio__link-icon {
   background: url(../../images/needle.svg) no-repeat center;
   width: 29px;
+  transition: 0.1s linear 0.1s;
+}
+
+.portfolio__link-icon:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
