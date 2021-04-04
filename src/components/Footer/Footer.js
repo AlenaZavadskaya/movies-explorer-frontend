@@ -28,9 +28,9 @@ function Footer() {
           <li className="footer__link">
             <a
               className="footer__link"
-              href="https://www.facebook.com/profile.php?id=100015301717347"
+              href="https://www.linkedin.com/in/alena-z-5aa9b1195/"
             >
-              Facebook
+              LinkedIn
             </a>
           </li>
         </ul>

@@ -23,9 +23,9 @@ function AboutMe() {
           <div className="about-me__links">
             <a
               className="about-me__link"
-              href="https://www.facebook.com/profile.php?id=100015301717347"
+              href="https://www.linkedin.com/in/alena-z-5aa9b1195/"
             >
-              Facebook
+              LinkedIn
             </a>
             <a
               className="about-me__link"
