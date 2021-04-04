@@ -1,6 +1,6 @@
 import { AUTH } from "../utils/config";
 
-export const BASE_URL = AUTH;
+const BASE_URL = AUTH;
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",

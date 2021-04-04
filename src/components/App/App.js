@@ -161,6 +161,15 @@ function App() {
       setSortedMovies(checkedLikes);
       localStorage.setItem("sortedMovies", JSON.stringify(checkedLikes));
     }
+	}
+	
+	function handleLikeChange(movie) {
+    const clickedMovie = movie.isSaved;
+    if (clickedMovie) {
+      handleDislikeClick(movie);
+    } else {
+      handleLikeClick(movie);
+    }
   }
 
   function handleLikeClick(movie) {
@@ -183,16 +192,7 @@ function App() {
       });
   }
 
-  function handleLikeChange(movie) {
-    const clickedMovie = movie.isSaved;
-    if (clickedMovie) {
-      handleMovieDelete(movie);
-    } else {
-      handleLikeClick(movie);
-    }
-  }
-
-  function handleMovieDelete(movie) {
+  function handleDislikeClick(movie) {
     const movieId = movie.id || movie.movieId;
     const selectedMovie = userMovies.find((item) => item.movieId === movieId);
     mainApi
@@ -209,7 +209,7 @@ function App() {
   }
 
   function handleMovieDeleteButton(movie) {
-    handleMovieDelete(movie);
+    handleDislikeClick(movie);
   }
 
   function handleGetSavedMovies(keyword) {
@@ -236,6 +236,12 @@ function App() {
         shortMovies ? movie.duration <= MAX_SHORT_MOVIE_DORATION : true
       );
     }
+	}
+	
+	function checkSavedMovie(movie) {
+    return (movie.isSaved = userMovies.some(
+      (userMovie) => userMovie.movieId === movie.id
+    ));
   }
 
   function getCurrentUser() {
@@ -275,12 +281,8 @@ function App() {
     }
   }, [loggedIn]);
 
-  function checkSavedMovie(movie) {
-    return userMovies.some((item) => item.movieId === movie.id);
-  }
-
   useEffect(() => {
-    checkSavedMovie(setSortedMovies);
+    checkSavedMovie(sortedMovies);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userMovies]);
 
