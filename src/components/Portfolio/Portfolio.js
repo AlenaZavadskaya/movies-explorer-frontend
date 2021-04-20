@@ -8,7 +8,7 @@ function Portfolio() {
       <div className="portfolio__links portfolio__links_border">
         <a
           className="portfolio__link"
-          href="https://alenazavadskaya.github.io/poetryca/index.html"
+          href="https://alenazavadskaya.github.io/how-to-learn/index.html"
         >
           Статичный сайт
         </a>
