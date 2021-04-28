@@ -1,5 +1,5 @@
 .header {
-  height: 74px;
+  min-height: 74px;
   background-color: #5c5c5c;
   display: flex;
   justify-content: space-between;
