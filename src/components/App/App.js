@@ -192,11 +192,12 @@ function App() {
       });
   }
 
-  function handleDislikeClick(movie) {
+	function handleDislikeClick(movie) {
+		const jwt = localStorage.getItem("jwt");
     const movieId = movie.id || movie.movieId;
     const selectedMovie = userMovies.find((item) => item.movieId === movieId);
     mainApi
-      .deleteMovie(selectedMovie._id)
+      .deleteMovie(selectedMovie._id, jwt)
       .then((deletedMovie) => {
         if (!deletedMovie) {
           throw new Error("При удалении фильма произошла ошибка");
