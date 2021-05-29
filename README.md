@@ -7,7 +7,7 @@
 
 ## [Ссылка на размещенный сайт](https://alenazavadskaya.site/)
 
-### :computer: Установка и запуск проекта
+### :rocket: Установка и запуск проекта
 *1. клонируйте репозиторий:*<br/>
 `git clone https://github.com/AlenaZavadskaya/movies-explorer-frontend.git`<br/>
 *2. установите зависимости:*<br/>
@@ -61,7 +61,7 @@
 - вёрстка на Flex layout и/или Grid layout,
 - сайт резиновый и адаптирован под рарешения: 1280, 1024, 768, 460 и 320рх.
 
-### :rocket: Технологии
+### :computer: Технологии
 - React
 - JavaScript 
 - CSS 
@@ -69,6 +69,3 @@
 - Grid layout
 - JSX
 - BEM 
-
-### :wrench: To do
-- исправить отображение лайков на корректное
