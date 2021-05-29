@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../PopupMenu/PopupMenu.css";
-import "../Header/Header.css";
+import "./PopupMenu.css";
 
 function PopupMenu(props) {
   return (

@@ -5,7 +5,6 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import "../FilterCheckbox/FilterCheckbox.css";
 import Footer from "../Footer/Footer";
 
 function SavedMovies(props) {

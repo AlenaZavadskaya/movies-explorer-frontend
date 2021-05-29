@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../Profile/Profile.css";
+import "./Profile.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import CurrentUserContext from "../../contexts/CurrentUserContext";

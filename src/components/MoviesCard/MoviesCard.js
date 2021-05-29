@@ -1,6 +1,4 @@
 import React from "react";
-import "./MoviesCard.css";
-import "../Header/Header.css";
 import { baseUrl } from "../../utils/config";
 
 function MoviesCard(props) {

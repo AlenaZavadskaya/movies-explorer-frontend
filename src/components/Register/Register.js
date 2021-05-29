@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Form from "../Form/Form";
-import "../Register/Register.css";
+import "./Register.css";
 
 function Register(props) {
   const [name, setName] = useState("");

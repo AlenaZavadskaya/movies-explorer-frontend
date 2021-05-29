@@ -1,10 +1,16 @@
 import React from "react";
-import "../More/More.css";
+import "./More.css";
 
-function More() {
+function More(props) {
   return (
     <section className="more">
-			<button type="button" className="more__button">Ещё</button>
+      <button
+        type="button"
+        onClick={props.showMoreMovies}
+        className="more__button"
+      >
+        Ещё
+      </button>
     </section>
   );
 }

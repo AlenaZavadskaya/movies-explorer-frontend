@@ -1,17 +1,15 @@
 import React from "react";
-import "../MoviesCard/MoviesCard.css";
-import "../Header/Header.css";
 import Header from "../Header/Header";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import "../FilterCheckbox/FilterCheckbox.css";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import "./Movies.css";
 
 function Movies(props) {
   return (
-    <>
+    <section className="movies">
       <Header className="header header__white">
         <Navigation onClick={props.onMenu} />
       </Header>
@@ -30,7 +28,7 @@ function Movies(props) {
         likedMovies={props.likedMovies}
       />
       <Footer />
-    </>
+    </section>
   );
 }
 
